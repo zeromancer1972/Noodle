@@ -1,0 +1,29 @@
+.pagehelp {
+	background-color: #666; /*#019bdb;*/
+	margin-bottom: 20px;
+	color: #fff;
+	min-height: 160px;
+	padding-top: 10px;
+}
+
+.btn-custom {
+	background-color: #abd100;
+	color: white;
+	border-color: #abd100;
+}
+
+.btn-custom:hover,.btn-custom:focus,.btn-custom:active {
+	background-color: #C4DF4D;
+	border-color: #C4DF4D;
+	color: white;
+}
+
+#footer {
+	font-size: 0.8em;
+}
+
+.actionbar {
+	border-bottom: solid 1px #ccc;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+}

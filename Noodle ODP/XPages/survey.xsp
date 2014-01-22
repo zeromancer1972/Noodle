@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xc:ccLayoutBootstrap>
+		<xp:this.facets>
+			<xp:div xp:key="facetLeft">
+				<h4>Start a survey</h4>
+			</xp:div>
+		</xp:this.facets>
+	</xc:ccLayoutBootstrap>
+</xp:view>

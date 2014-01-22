@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" dojoTheme="true">
+	<xp:this.resources>
+		<xp:dojoModule name="dijit.Dialog"></xp:dojoModule>
+	</xp:this.resources>
+	<xp:div id="dlgLogin" dojoType="dijit.Dialog"
+		style="display:none;width:500px">
+		<xp:this.title><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Anmelden":"Login"}]]></xp:this.title>
+		<xp:table styleClass="lotusForm lotusFormTable">
+			<xp:tr>
+				<xp:td rowspan="3" style="width:80px;">
+					<xp:image url="/1377376151_gnome-lockscreen.png"
+						id="image1">
+					</xp:image>
+
+				</xp:td>
+				<xp:td style="width:100px">
+					<xp:label id="label1" for="username">
+						<xp:this.value><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Benutzername":"Username"}]]></xp:this.value>
+					</xp:label>
+				</xp:td>
+				<xp:td style="width:300px;">
+					<xp:inputText id="username" style="width:100%"
+						styleClass="username">
+						<xp:this.value><![CDATA[${javascript:""}]]></xp:this.value>
+					</xp:inputText>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td style="width:103.0px">
+					<xp:label id="label2" for="password">
+						<xp:this.value><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Kennwort":"Password"}]]></xp:this.value>
+					</xp:label>
+				</xp:td>
+				<xp:td>
+					<xp:inputText id="password" style="width:100%"
+						password="true" styleClass="password">
+						<xp:this.value><![CDATA[${javascript:""}]]></xp:this.value>
+					</xp:inputText>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td colspan="3">
+					<xp:div id="loginMessage">&#160;</xp:div>
+				</xp:td>
+			</xp:tr>
+		</xp:table>
+		<xp:div style="text-align:right">
+			<xp:button id="btnLogin" style="text-align:center">
+				<xp:this.value><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Anmelden":"Login"}]]></xp:this.value>
+			</xp:button>
+			
+			<xp:button id="btnLoginCancel">
+				<xp:this.value><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Abbrechen":"Cancel"}]]></xp:this.value>
+			</xp:button>
+
+		</xp:div>
+	</xp:div>
+	<xp:div id="dlgLogout" dojoType="dijit.Dialog"
+		style="display:none;width:500px">
+		<xp:this.title><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Abmelden":"Logout"}]]></xp:this.title>
+		<xp:div>
+			<xp:label id="label3">
+				<xp:this.value><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Wollen Sie sich vom System abmelden?":"Do you want to logout from the system?"}]]></xp:this.value>
+			</xp:label>
+		</xp:div>
+		<xp:div style="text-align:right">
+			<xp:button id="btnLogoutOk">
+				<xp:this.value><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Abmelden":"Logout"}]]></xp:this.value>
+			</xp:button>
+			&#160;
+			<xp:button id="btnLogoutCancel">
+				<xp:this.value><![CDATA[#{javascript:(context.getLocaleString().indexOf("de")!=-1)?"Abbrechen":"Cancel"}]]></xp:this.value>
+			</xp:button>
+		</xp:div>
+	</xp:div>
+
+	<xp:eventHandler event="onClientLoad" submit="false">
+		<xp:this.script><![CDATA[var username = dojo.byId("#{id:username}");
+var password = dojo.byId("#{id:password}");
+var msg = dojo.byId("#{id:loginMessage}");
+
+dojo.connect(username, "onkeypress", function(evt) {
+	if (evt.keyCode == dojo.keys.ENTER) {
+		doLogin()
+	}
+})
+dojo.connect(password, "onkeypress", function(evt) {
+	if (evt.keyCode == dojo.keys.ENTER) {
+		doLogin()
+	}
+})
+dojo.connect(dojo.byId("#{id:btnLogin}"), "onclick", function(evt) {
+	doLogin()
+})
+dojo.connect(dojo.byId("#{id:btnLogoutOk}"), "onclick", function(evt) {
+	dijit.byId("#{id:dlgLogout}").hide();
+	require( [ "dojo/cookie" ], function(cookie) {
+		if (cookie("DomAuthSessId")) {
+			cookie("DomAuthSessId", null, {
+				path : "/",
+				expires : "Thu, 01 Jan 1970 00:00:00 GMT"
+			});
+		}
+		if (cookie("LtpaToken")) {
+			cookie("LtpaToken", null, {
+				path : "/",
+				expires : "Thu, 01 Jan 1970 00:00:00 GMT"
+			});
+		}
+		if (cookie("LtpaToken2")) {
+			cookie("LtpaToken2", null, {
+				path : "/",
+				expires : "Thu, 01 Jan 1970 00:00:00 GMT"
+			});
+		}
+
+		location.reload();
+	})
+})
+
+dojo.connect(dojo.byId("#{id:btnLoginCancel}"), "onclick", function(evt) {
+	dijit.byId("#{id:dlgLogin}").hide();
+})
+
+dojo.connect(dojo.byId("#{id:btnLogoutCancel}"), "onclick", function(evt) {
+	dijit.byId("#{id:dlgLogout}").hide();
+})
+
+doLogin = function() {
+	require(
+			[ "dojo/request/xhr" ],
+			function(xhr) {
+				xhr(
+						"/names.nsf?login",
+						{
+							method : "POST",
+							data : {
+								"username" : username.value,
+								"password" : password.value,
+								"redirectto" : "#{javascript:facesContext.getExternalContext().getRequest().getContextPath()}/$icon"
+							},
+							sync : true,
+							handleAs : "text"
+						})
+						.then(
+								function() {
+									if (document.cookie
+											.match(/DomAuthSessId|LtpaToken|LtpaToken2/)) {
+										msg.innerHTML = "#{javascript:(context.getLocaleString().equals('de_DE'))?'Anmeldung erfolgreich! Weiterleitung erfolgt...':'Login successful! Redirecting...'}";
+										msg.className = "lotusMessage lotusConfirm";
+										location.reload();
+									} else {
+										msg.innerHTML = "#{javascript:(context.getLocaleString().equals('de_DE'))?'Anmeldung fehlgeschlagen! Bitte versuchen Sie es erneut.':'Login failed. Please try again.'}";
+										msg.className = "lotusMessage lotusWarning";
+										username.value = "";
+										password.value = "";
+										username.focus()
+									}
+								}, function(err) {
+								}, function(evt) {
+								});
+			});
+}
+
+checkCookie = function() {
+	var tokenOk = false;
+	require( [ "dojo/cookie" ], function(cookie) {
+		if (cookie("DomAuthSessId")) {
+			tokenOk = (cookie("DomAuthSessId").length == 32);
+		}
+		if (cookie("LtpaToken")) {
+			tokenOk = (cookie("LtpaToken").length == 32);
+		}
+		if (cookie("LtpaToken2")) {
+			tokenOk = (cookie("LtpaToken2").length == 32);
+		}
+	})
+	return tokenOk;
+}
+
+dialogLogin = function() {
+	if (checkCookie()) {
+		dijit.byId("#{id:dlgLogout}").show();
+	} else {
+		username.value = "";
+		password.value = "";
+		msg.innerHTML = "";
+		msg.className = "";
+		dijit.byId("#{id:dlgLogin}").show();
+	}
+
+}]]></xp:this.script>
+	</xp:eventHandler>
+</xp:view>

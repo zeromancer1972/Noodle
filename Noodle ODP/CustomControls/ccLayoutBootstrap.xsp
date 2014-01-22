@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xe:keepSessionAlive id="keepSessionAlive1"></xe:keepSessionAlive>
+
+	<xp:this.beforePageLoad><![CDATA[#{javascript:var url = facesContext.getExternalContext().getRequest().getRequestURI();
+if(url.indexOf(".xsp")==-1){
+	if(url.endsWith("/")){
+		url = url.substr(0, url.length-1)
+	}
+	context.redirectToPage(url+view.getPageName())
+}}]]></xp:this.beforePageLoad>
+	<xp:this.resources>
+		<xp:bundle src="/app.properties" var="app"></xp:bundle>
+	</xp:this.resources>
+
+	<nav class="navbar-header navbar-inverse navbar-fixed-top"
+		role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle"
+					data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+				<a class="navbar-brand" href="index.xsp">Noodle
+				</a>
+			</div>
+
+
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<xp:panel tagName="li">
+						<a href="survey.xsp">
+							<span
+								class="glyphicon glyphicon-thumbs-up">
+							</span>
+							&#160;Start a survey
+						</a>
+					</xp:panel>
+					<xp:panel tagName="li">
+						<a href="date.xsp">
+							<span
+								class="glyphicon glyphicon-calendar">
+							</span>
+							&#160;Find a date
+						</a>
+					</xp:panel>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+
+					
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">
+							<xp:text>
+								<xp:this.value><![CDATA[#{javascript:var uploads = database.search("SELECT Form=\"file\" & @IsAvailable($PublicAccess)").getCount();
+var uploadtext = (uploads>0)?" ("+uploads.toString()+")":""; 
+
+@Name("[CN]", @UserName())+uploadtext}]]></xp:this.value>
+							</xp:text>
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+						<xp:panel tagName="li">
+								<a href="my.xsp">
+									<span
+										class="glyphicon glyphicon-heart">
+									</span>
+									&#160;My Noodles
+								</a>
+							</xp:panel>
+							<xp:panel tagName="li">
+								<xp:this.rendered><![CDATA[#{javascript:@ClientType().equals("Web")}]]></xp:this.rendered>
+								<a href="#" onclick="dialogLogin()">
+									<span
+										class="glyphicon glyphicon-user">
+									</span>
+									&#160;
+									<xp:text>
+										<xp:this.value><![CDATA[#{javascript:@UserName().equals("Anonymous")?"Login":"Logout"}]]></xp:this.value>
+									</xp:text>
+								</a>
+							</xp:panel>
+							
+						</ul>
+					</li>
+
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+
+	<div class="pagehelp">
+		<div class="container" style="padding-top:50px">
+			<xp:callback facetName="facetLeft" id="facetLeft"></xp:callback>
+		</div>
+	</div>
+
+	<div class="container" style="padding-bottom:70px">
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+				<xp:callback facetName="facetMiddle" id="facetMiddle"></xp:callback>
+			</div>
+		</div>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-bottom "
+		role="navigation" id="footer">
+
+		<nav class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container">
+				<ul class="nav navbar-nav">
+					<li>
+						<a
+							href="javascript:void(0);"
+							target="_blank">
+							Download Noodle
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a>
+							<xp:label id="label1">
+								<xp:this.value><![CDATA[#{javascript:app['applicationName']+", Release "+app['release']+" | © 2014 Oliver Busse, Apache License 2.0"}]]></xp:this.value>
+							</xp:label>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+	</nav>
+
+
+	<xc:dlgLogin></xc:dlgLogin>
+	
+	
+</xp:view>

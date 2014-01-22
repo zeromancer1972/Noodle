@@ -1,0 +1,45 @@
+<theme extends="notes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="platform:/plugin/com.ibm.designer.domino.stylekits/schema/stylekit.xsd">
+	<resource>
+		<content-type>application/x-javascript</content-type>
+		<href>jquery-1.10.2.min.js</href>
+	</resource>
+	<resource>
+		<content-type>text/css</content-type>
+		<href>bootstrap3/css/bootstrap.min.css</href>
+	</resource>
+	<!-- 
+	<resource>
+		<content-type>text/css</content-type>
+		<href>bootstrap3/css/bootstrap-theme.min.css</href>
+	</resource>
+	 -->
+	<resource>
+		<content-type>application/x-javascript</content-type>
+		<href>bootstrap3/js/bootstrap.min.js</href>
+	</resource>
+
+
+	<resource>
+		<content-type>application/x-javascript</content-type>
+		<href>core.js</href>
+	</resource>
+	<resource>
+		<content-type>text/css</content-type>
+		<href>bs3_tweaks.css</href>
+	</resource>
+
+	!-- set page title and favicon -->
+	<control override="false">
+		<!-- set a default page name unless you define it in the page itself -->
+		<name>ViewRoot</name>
+		<property>
+			<name>pageTitle</name>
+			<value>#{javascript:@DbTitle()}</value>
+		</property>
+		<property>
+			<name>pageIcon</name>
+			<value>1390444646_211793.ico</value>
+		</property>
+	</control>
+</theme>
