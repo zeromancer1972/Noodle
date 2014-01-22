@@ -29,7 +29,11 @@ if(url.indexOf(".xsp")==-1){
 					<span class="icon-bar"></span>
 				</button>
 
-				<a class="navbar-brand" href="index.xsp">Noodle
+				<a class="navbar-brand" href="index.xsp">
+				<xp:image url="/1390444740_icon-ios7-people.png" style="margin-left:-12px;margin-right:10px"
+					id="image1">
+				</xp:image>
+				Noodle
 				</a>
 			</div>
 
@@ -74,14 +78,15 @@ var uploadtext = (uploads>0)?" ("+uploads.toString()+")":"";
 						</a>
 						<ul class="dropdown-menu">
 						<xp:panel tagName="li">
-								<a href="my.xsp">
-									<span
-										class="glyphicon glyphicon-heart">
-									</span>
-									&#160;My Noodles
-								</a>
-							</xp:panel>
-							<xp:panel tagName="li">
+							<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
+							<a href="my.xsp">
+								<span
+									class="glyphicon glyphicon-heart">
+								</span>
+								&#160;My Noodles
+							</a>
+						</xp:panel>
+						<xp:panel tagName="li">
 								<xp:this.rendered><![CDATA[#{javascript:@ClientType().equals("Web")}]]></xp:this.rendered>
 								<a href="#" onclick="dialogLogin()">
 									<span
@@ -124,7 +129,7 @@ var uploadtext = (uploads>0)?" ("+uploads.toString()+")":"";
 				<ul class="nav navbar-nav">
 					<li>
 						<a
-							href="javascript:void(0);"
+							href="http://www.openntf.org/main.nsf/project.xsp?r=project/Noodle"
 							target="_blank">
 							Download Noodle
 						</a>
