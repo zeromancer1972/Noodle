@@ -3,6 +3,7 @@
 
 	<xc:ccLayoutBootstrap>
 		<xp:this.facets>
+			<xc:ccWelcome xp:key="facetMiddle"></xc:ccWelcome>
 			<xp:div xp:key="facetLeft"><h4>
 			Welcome to Noodle
 			</h4></xp:div></xp:this.facets>
