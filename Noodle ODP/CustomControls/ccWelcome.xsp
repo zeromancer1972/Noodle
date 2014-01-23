@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:div>
+	<h1>Welcome to Noodle!</h1>
+	</xp:div>
+	
+	<xp:div>
+		Please login or signup for using Noodle.
+		<xp:this.rendered><![CDATA[#{javascript:@UserName().equals("Anonymous")}]]></xp:this.rendered>
+	</xp:div>
+	
+	<xp:div>
+	You are logged in and now start a new Noodle with one of the upper actions. Have fun!
+		<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
+	</xp:div>
+</xp:view>
