@@ -1,10 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
 
-	<xc:ccLayoutBootstrap>
+
+	<xc:ccLayoutBootstrap colorclass="green">
 		<xp:this.facets>
 			<xp:div xp:key="facetLeft">
 				<h4>Start a survey</h4>
+				<xp:div>
+					Please login first to start a Noodle.
+					<xp:this.rendered><![CDATA[#{javascript:@UserName().equals("Anonymous")}]]></xp:this.rendered>
+				</xp:div>
+				<xp:div>
+					A survey should contains 2 or more options to ask
+					your invitees. Consider to give enough information
+					for your survey for your users to understand the
+					question.
+					<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
+				</xp:div>
+			</xp:div>
+			<xp:div xp:key="facetMiddle">
+				<xp:panel>
+					<xp:this.data>
+						<xp:dominoDocument var="document1"
+							formName="survey">
+						</xp:dominoDocument>
+					</xp:this.data>
+					<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
+					<h1>Welcome to your new survey!</h1>
+					<xp:div styleClass="form-group">
+						<xp:label value="Give your survey a title"
+							id="surveyTitle_Label1" for="surveyTitle1" disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.surveyTitle}"
+							id="surveyTitle1" styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="form-group">
+						<xp:label value="Give a brief description"
+							id="surveyDesc_Label1" for="surveyDesc1" disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.surveyDesc}"
+							id="surveyDesc1" styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="form-group">
+						<xp:label
+							value="What is the question you want to ask?" id="label1"
+							for="surveyQuestion1" disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.surveyOptions}"
+							id="surveyQuestion1" styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="form-group">
+						<xp:label
+							value="Define options the users can choose"
+							id="surveyOptions_Label1" for="surveyOptions1"
+							disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.surveyOptions}"
+							id="surveyOptions1" styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="pull-left">
+						<xp:button value="Cancel" id="button2"
+							styleClass="btn btn-lg btn-default" disableTheme="true">
+							<xp:eventHandler event="onclick"
+								submit="true" refreshMode="complete">
+								<xp:this.action>
+									<xp:openPage name="/my.xsp"></xp:openPage>
+								</xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
+					</xp:div>
+					<xp:div styleClass="pull-right">
+						<xp:button value="Save" id="button1"
+							styleClass="btn btn-lg btn-success" disableTheme="true">
+						</xp:button>
+					</xp:div>
+
+				</xp:panel>
+				<xp:panel>
+					<xp:this.rendered><![CDATA[#{javascript:@UserName().equals("Anonymous")}]]></xp:this.rendered>
+					<h1>You are not logged in</h1>
+					<xp:button id="button3"
+						styleClass="btn btn-default btn-lg">
+						<span class="glyphicon glyphicon-lock"></span>
+						&#160;Ok, log me in!
+						<xp:eventHandler event="onclick"
+							submit="false">
+							<xp:this.script><![CDATA[dialogLogin();]]></xp:this.script>
+						</xp:eventHandler>
+					</xp:button>
+				</xp:panel>
 			</xp:div>
 		</xp:this.facets>
 	</xc:ccLayoutBootstrap>

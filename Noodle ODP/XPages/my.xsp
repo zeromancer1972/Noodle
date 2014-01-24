@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
 
-	<xc:ccLayoutBootstrap>
+	<xc:ccLayoutBootstrap colorclass="purple">
 		<xp:this.facets>
 			<xp:div xp:key="facetLeft">
 				<h4>My Noodles</h4>
+				This area show all your Noodles you created.
 			</xp:div>
 
 		</xp:this.facets>

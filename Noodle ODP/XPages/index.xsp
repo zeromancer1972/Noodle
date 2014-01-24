@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
 
-	<xc:ccLayoutBootstrap>
+	<xc:ccLayoutBootstrap colorclass="orange">
 		<xp:this.facets>
 			<xc:ccWelcome xp:key="facetMiddle"></xc:ccWelcome>
-			<xp:div xp:key="facetLeft"><h4>
-			Welcome to Noodle
-			</h4></xp:div></xp:this.facets>
+			<xp:div xp:key="facetLeft">
+				<h4>Welcome to Noodle</h4>
+				With Noodle you can create surveys and find dates for
+				e.g. a meeting. Noodle's goal is to offer the core
+				functionality of Doodle on-premise on your IBM Domino
+				server.
+			</xp:div>
+		</xp:this.facets>
 	</xc:ccLayoutBootstrap>
 </xp:view>

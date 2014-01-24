@@ -1,9 +1,25 @@
 .pagehelp {
-	background-color: #ff5400; /*#019bdb;*/
-	margin-bottom: 20px;
+	background-color: #666; margin-bottom : 20px;
 	color: #fff;
 	min-height: 160px;
 	padding-top: 10px;
+	margin-bottom: 20px;
+}
+
+.orange {
+	background-color: #ff5400; /*#019bdb;*/
+}
+
+.green {
+	background-color: #63af00;
+}
+
+.blue {
+	background-color: #008fe2;
+}
+
+.purple {
+	background-color: #ff00e1;
 }
 
 .btn-custom {

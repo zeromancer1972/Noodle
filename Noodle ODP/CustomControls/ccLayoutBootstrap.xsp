@@ -40,14 +40,14 @@ if(url.indexOf(".xsp")==-1){
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<xp:panel tagName="li">
-						<a href="survey.xsp">
+						<a href="survey.xsp?action=newDocument">
 							<span class="glyphicon glyphicon-thumbs-up">
 							</span>
 							&#160;Start a survey
 						</a>
 					</xp:panel>
 					<xp:panel tagName="li">
-						<a href="date.xsp">
+						<a href="date.xsp?action=newDocument">
 							<span class="glyphicon glyphicon-calendar">
 							</span>
 							&#160;Find a date
@@ -102,7 +102,7 @@ if(url.indexOf(".xsp")==-1){
 		</div>
 	</nav>
 
-	<div class="pagehelp">
+	<div class="pagehelp #{javascript:compositeData.colorclass}">
 		<div class="container" style="padding-top:50px">
 			<xp:callback facetName="facetLeft" id="facetLeft"></xp:callback>
 		</div>
