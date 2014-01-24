@@ -5,5 +5,6 @@ Noodle is an attempt to recreate the allmighty Doodle on our beloved Domino/Note
 
 This is just a start, so stay tuned for updates :-)
 
-You can watch a live demo of the [current development branch here](http://mardou.dyndns.org/noodle.nsf/index.xsp) 
+You can watch a live demo of the [current development branch here](http://mardou.dyndns.org/noodle.nsf/index.xsp)
+
 Use "OpenNTF" and "openntf" for credentials.
