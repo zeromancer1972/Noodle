@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom"
 	xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:this.styleClass><![CDATA[#{javascript:return view.getRequestUrl().indexOf("index.xsp")!=-1 ? "active":""}]]></xp:this.styleClass>
 	<xe:keepSessionAlive id="keepSessionAlive1"></xe:keepSessionAlive>
 
-	<xp:this.beforePageLoad><![CDATA[#{javascript:var url = facesContext.getExternalContext().getRequest().getRequestURI();
+	<xp:this.beforePageLoad><![CDATA[#{javascript:context.setLocaleString("en_US");
+var url = facesContext.getExternalContext().getRequest().getRequestURI();
 if(url.indexOf(".xsp")==-1){
 	if(url.endsWith("/")){
 		url = url.substr(0, url.length-1)
@@ -25,13 +27,10 @@ if(url.indexOf(".xsp")==-1){
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<xp:image url="/people32x32_white.png"
-					style="float:left;padding-top:8px;" id="image1">
+				<xp:image url="/people32x32_white.png" style="float:left;padding-top:8px;"
+					id="image1">
 				</xp:image>
-				<a class="navbar-brand" href="index.xsp">
-
-					Noodle
-				</a>
+				<a class="navbar-brand" href="index.xsp">Noodle</a>
 			</div>
 
 
@@ -40,6 +39,7 @@ if(url.indexOf(".xsp")==-1){
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<xp:panel tagName="li">
+						<xp:this.styleClass><![CDATA[#{javascript:return view.getRequestUrl().indexOf("survey.xsp?action=newDocument")!=-1 ? "active":""}]]></xp:this.styleClass>
 						<a href="survey.xsp?action=newDocument">
 							<span class="glyphicon glyphicon-thumbs-up">
 							</span>
@@ -47,6 +47,7 @@ if(url.indexOf(".xsp")==-1){
 						</a>
 					</xp:panel>
 					<xp:panel tagName="li">
+						<xp:this.styleClass><![CDATA[#{javascript:return view.getRequestUrl().indexOf("date.xsp?action=newDocument")!=-1 ? "active":""}]]></xp:this.styleClass>
 						<a href="date.xsp?action=newDocument">
 							<span class="glyphicon glyphicon-calendar">
 							</span>
@@ -65,7 +66,7 @@ if(url.indexOf(".xsp")==-1){
 							</span>
 							&#160;
 							<xp:text>
-								<xp:this.value><![CDATA[#{javascript:@UserName().equals("Anonymous")?"Howdy, stranger!":"Welcome, "+@Name("[CN]", @UserName())}]]></xp:this.value>
+								<xp:this.value><![CDATA[#{javascript:@UserName().equals("Anonymous")?"Howdy, stranger!":"Hello, "+@Name("[CN]", @UserName())}]]></xp:this.value>
 							</xp:text>
 							<b class="caret"></b>
 						</a>
@@ -125,7 +126,13 @@ if(url.indexOf(".xsp")==-1){
 					<li>
 						<a href="http://www.openntf.org/main.nsf/project.xsp?r=project/Noodle"
 							target="_blank">
-							Download Noodle
+							Get Noodle from OpenNTF
+						</a>
+					</li>
+					<li>
+						<a href="https://github.com/zeromancer1972/Noodle"
+							target="_blank">
+							Clone from GIT
 						</a>
 					</li>
 				</ul>

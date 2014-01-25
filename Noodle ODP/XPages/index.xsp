@@ -5,7 +5,7 @@
 		<xp:this.facets>
 			<xc:ccWelcome xp:key="facetMiddle"></xc:ccWelcome>
 			<xp:div xp:key="facetLeft">
-				<h4>Welcome to Noodle</h4>
+				<h4>This is Noodle</h4>
 				With Noodle you can create surveys and find dates for
 				e.g. a meeting. Noodle's goal is to offer the core
 				functionality of Doodle on-premise on your IBM Domino

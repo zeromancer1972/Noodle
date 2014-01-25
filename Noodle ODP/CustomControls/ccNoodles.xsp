@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.data>
+		<xp:dominoView var="view1" viewName="surveysByUser"
+			categoryFilter="#{javascript:@UserName()}">
+		</xp:dominoView>
+		<xp:dominoView var="view2" viewName="datesByUser"
+			categoryFilter="#{javascript:@UserName()}">
+		</xp:dominoView>
+	</xp:this.data>
+	<h3>
+		My surveys&#160;
+		<span class="glyphicon glyphicon-thumbs-up"></span>
+	</h3>
+	<xp:pager layout="Previous Group Next" partialRefresh="true"
+		id="pager1" for="repeat1" disableTheme="true">
+	</xp:pager>
+	<table class="table table-striped">
+		<colgroup>
+			<col style="width: 300px;" />
+			<col style="width: 300px;" />
+			<col width="*" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Question</th>
+				<th>Modified</th>
+			</tr>
+		</thead>
+		<tbody>
+			<xp:repeat id="repeat1" rows="30" value="#{view1}" var="survey"
+				disableOutputTag="true">
+				<xp:panel>
+					<xp:this.data>
+						<xp:dominoDocument var="document1" action="openDocument"
+							documentId="#{javascript:survey.getDocument().getUniversalID()}"
+							formName="survey">
+						</xp:dominoDocument>
+					</xp:this.data>
+					<tr>
+						<td>
+							<xp:inputText id="inputText1" value="#{document1.surveyTitle}">
+							</xp:inputText>
+						</td>
+						<td>
+							<xp:inputText id="inputText2" value="#{document1.surveyQuestion}">
+							</xp:inputText>
+						</td>
+						<td>
+							<xp:label id="label1">
+								<xp:this.value><![CDATA[#{javascript:var doc:NotesDocument = survey.getDocument();
+doc.getCreated()}]]></xp:this.value>
+							</xp:label>
+						</td>
+					</tr>
+				</xp:panel>
+			</xp:repeat>
+		</tbody>
+	</table>
+	<h3>
+		My dates&#160;
+		<span class="glyphicon glyphicon-calendar"></span>
+	</h3>
+	<xp:pager layout="Previous Group Next" partialRefresh="true"
+		id="pager2" for="repeat2" disableTheme="true">
+	</xp:pager>
+	<table class="table table-striped">
+		<colgroup>
+			<col style="width: 300px;" />
+			<col style="width: 300px;" />
+			<col width="*" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Topic</th>
+				<th>Modified</th>
+			</tr>
+		</thead>
+		<tbody>
+			<xp:repeat id="repeat2" rows="30" value="#{view2}" var="date"
+				disableOutputTag="true">
+				<xp:panel>
+					<xp:this.data>
+						<xp:dominoDocument var="document1" action="openDocument"
+							documentId="#{javascript:date.getDocument().getUniversalID()}"
+							formName="date">
+						</xp:dominoDocument>
+					</xp:this.data>
+					<tr>
+						<td>
+							<xp:inputText id="inputText3" value="#{document1.dateTitle}">
+							</xp:inputText>
+						</td>
+						<td>
+							<xp:inputText id="inputText4" value="#{document1.dateTopic}">
+							</xp:inputText>
+						</td>
+						<td>
+							<xp:label id="label2">
+								<xp:this.value><![CDATA[#{javascript:var doc:NotesDocument = date.getDocument();
+doc.getCreated()}]]></xp:this.value>
+							</xp:label>
+						</td>
+					</tr>
+				</xp:panel>
+			</xp:repeat>
+		</tbody>
+	</table>
+</xp:view>

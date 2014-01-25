@@ -23,7 +23,8 @@
 					<xp:this.data>
 						<xp:dominoDocument var="document1"
 							formName="survey">
-						</xp:dominoDocument>
+						<xp:this.postNewDocument><![CDATA[#{javascript:currentDocument.setValue("surveyUser", @UserName());
+currentDocument.setValue("surveyId", @Unique());}]]></xp:this.postNewDocument></xp:dominoDocument>
 					</xp:this.data>
 					<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
 					<h1>Welcome to your new survey!</h1>
@@ -48,7 +49,7 @@
 							value="What is the question you want to ask?" id="label1"
 							for="surveyQuestion1" disableTheme="true">
 						</xp:label>
-						<xp:inputText value="#{document1.surveyOptions}"
+						<xp:inputText value="#{document1.surveyQuestion}"
 							id="surveyQuestion1" styleClass="form-control">
 						</xp:inputText>
 					</xp:div>
@@ -73,26 +74,10 @@
 							</xp:eventHandler>
 						</xp:button>
 					</xp:div>
-					<xp:div styleClass="pull-right">
-						<xp:button value="Save" id="button1"
-							styleClass="btn btn-lg btn-success" disableTheme="true">
-						</xp:button>
-					</xp:div>
+					<xc:ccSave></xc:ccSave>
 
 				</xp:panel>
-				<xp:panel>
-					<xp:this.rendered><![CDATA[#{javascript:@UserName().equals("Anonymous")}]]></xp:this.rendered>
-					<h1>You are not logged in</h1>
-					<xp:button id="button3"
-						styleClass="btn btn-default btn-lg">
-						<span class="glyphicon glyphicon-lock"></span>
-						&#160;Ok, log me in!
-						<xp:eventHandler event="onclick"
-							submit="false">
-							<xp:this.script><![CDATA[dialogLogin();]]></xp:this.script>
-						</xp:eventHandler>
-					</xp:button>
-				</xp:panel>
+				<xc:ccNotLoggedIn></xc:ccNotLoggedIn>
 			</xp:div>
 		</xp:this.facets>
 	</xc:ccLayoutBootstrap>

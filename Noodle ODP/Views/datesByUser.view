@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<view name='datesByUser' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='C1257C68006F8B3D' showinmenu='false' publicaccess='false' designerversion='8.5.3'
+ unreadmarks='none' onopengoto='lastopened' onrefresh='displayindicator' headers='beveled'
+ opencollapsed='false' showresponsehierarchy='true' showmargin='true' shrinkrows='false'
+ extendlastcolumn='false' showhierarchies='false' unreadcolor='black' rowlinecount='1'
+ headerlinecount='1' rowspacing='1' bgcolor='white' totalscolor='black' headerbgcolor='white'
+ boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
+ allowcustomizations='true' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
+ uniquekeys='false'>
+<noteinfo noteid='206' unid='3DC04F77D964D337C1257C6B0000A4AA' sequence='6'>
+<created><datetime>20140125T010701,54+01</datetime></created>
+<modified><datetime>20140125T020025,63+01</datetime></modified>
+<revised><datetime>20140125T011229,50+01</datetime></revised>
+<lastaccessed><datetime>20140125T020044,12+01</datetime></lastaccessed>
+<addedtofile><datetime>20140125T020025,63+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Oliver Busse/O=ulcbs</name></updatedby>
+<wassignedby><name>CN=Oliver Busse/O=ulcbs</name></wassignedby><code event='selection'><formula
+>SELECT form="date"</formula></code>
+<column sort='ascending' hidedetailrows='false' itemname='dateUser' width='10'
+ resizable='true' separatemultiplevalues='true' sortnoaccent='true' sortnocase='true'
+ showaslinks='false' categorized='true' twisties='true'><columnheader title='#'><font
+ size='9pt' style='bold'/></columnheader></column>
+<column hidedetailrows='false' itemname='dateId' width='10' resizable='true'
+ separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><columnheader
+><font size='9pt' style='bold'/></columnheader></column></view>
+

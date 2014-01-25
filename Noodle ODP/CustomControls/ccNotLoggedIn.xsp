@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:div styleClass="jumbotron">
+		<h1>Welcome to Noodle!</h1>
+		<p>Please login or signup for using Noodle.</p>
+		<xp:button id="button3" styleClass="btn btn-default btn-lg">
+			<span class="glyphicon glyphicon-lock"></span>
+			&#160;Ok, log me in!
+			<xp:eventHandler event="onclick" submit="false">
+				<xp:this.script><![CDATA[dialogLogin();]]></xp:this.script>
+			</xp:eventHandler>
+		</xp:button>
+		<xp:this.rendered><![CDATA[#{javascript:@UserName().equals("Anonymous")}]]></xp:this.rendered>
+	</xp:div>
+</xp:view>

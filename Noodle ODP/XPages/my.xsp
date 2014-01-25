@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
 
-	<xc:ccLayoutBootstrap colorclass="purple">
+	<xc:ccLayoutBootstrap colorclass="petrol">
 		<xp:this.facets>
+			<xp:div xp:key="facetMiddle">
+				<xp:panel>
+					<h1>My Noodles</h1>
+					<xc:ccNoodles></xc:ccNoodles>
+					<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
+				</xp:panel>
+				<xc:ccNotLoggedIn></xc:ccNotLoggedIn>
+			</xp:div>
 			<xp:div xp:key="facetLeft">
 				<h4>My Noodles</h4>
-				This area show all your Noodles you created.
+				This area displays all your Noodles you created.
 			</xp:div>
 
 		</xp:this.facets>

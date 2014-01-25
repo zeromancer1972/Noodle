@@ -1,43 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
-	<xp:div>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xc:ccNotLoggedIn></xc:ccNotLoggedIn>
+	<xp:div styleClass="jumbotron">
 		<h1>Welcome to Noodle!</h1>
-	</xp:div>
-
-	<xp:div>
-		Please login or signup for using Noodle.
-		<xp:this.rendered><![CDATA[#{javascript:@UserName().equals("Anonymous")}]]></xp:this.rendered>
-	</xp:div>
-
-	<xp:div>
 		You are logged in to start a new Noodle with one of the upper
-		actions.
-		Have fun!
-		<xp:br></xp:br>
-		<xp:br></xp:br>
+		actions. Have fun!
+
 		<p>
 			<xp:button id="button1" disableTheme="true"
 				styleClass="btn btn-lg btn-default">
-				<span class="glyphicon glyphicon-thumbs-up">
-				</span>
+				<span class="glyphicon glyphicon-thumbs-up"></span>
 				&#160;Start a survey
 				<xp:eventHandler event="onclick" submit="true"
 					refreshMode="complete">
 					<xp:this.action>
-						<xp:openPage name="/survey.xsp" target="newDocument"></xp:openPage>
+						<xp:openPage name="/survey.xsp"
+							target="newDocument">
+						</xp:openPage>
 					</xp:this.action>
 				</xp:eventHandler>
 			</xp:button>
 			&#160;
 			<xp:button id="button2" disableTheme="true"
 				styleClass="btn btn-lg btn-default">
-				<span class="glyphicon glyphicon-calendar">
-				</span>
+				<span class="glyphicon glyphicon-calendar"></span>
 				&#160;Find a date
 				<xp:eventHandler event="onclick" submit="true"
 					refreshMode="complete">
 					<xp:this.action>
-						<xp:openPage name="/date.xsp" target="newDocument"></xp:openPage>
+						<xp:openPage name="/date.xsp"
+							target="newDocument">
+						</xp:openPage>
 					</xp:this.action>
 				</xp:eventHandler>
 			</xp:button>

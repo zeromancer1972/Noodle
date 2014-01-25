@@ -5,8 +5,65 @@
 		<xp:this.facets>
 			<xp:div xp:key="facetLeft">
 				<h4>Find a date</h4>
-				Finding a date is very easy. Just define some dates for your event and publish this Noodle to your buddies.
+				Finding a date is very easy. Just define some dates for your event
+				and publish this Noodle to your buddies.
 			</xp:div>
+
+			<xp:div xp:key="facetMiddle">
+				<xp:panel>
+					<xp:this.data>
+						<xp:dominoDocument var="document1" formName="date">
+						<xp:this.postNewDocument><![CDATA[#{javascript:currentDocument.setValue("dateUser", @UserName());
+currentDocument.setValue("dateId", @Unique());}]]></xp:this.postNewDocument></xp:dominoDocument>
+					</xp:this.data>
+					<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
+					<h1>Find a date quickly!</h1>
+					<xp:div styleClass="form-group">
+						<xp:label id="dateTitle_Label1" for="dateTitle1" value="Provide a title" disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.dateTitle}" id="dateTitle1"
+							styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="form-group">
+						<xp:label value="Create a description" id="dateDesc_Label1"
+							for="dateDesc1" disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.dateDesc}" id="dateDesc1"
+							styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="form-group">
+						<xp:label value="Name a topic" id="dateTopic_Label1" for="dateTopic1" disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.dateTopic}" id="dateTopic1"
+							styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="form-group">
+						<xp:label value="Define dates" id="dateOptions_Label1"
+							for="dateOptions1" disableTheme="true">
+						</xp:label>
+						<xp:inputText value="#{document1.dateOptions}" id="dateOptions1"
+							styleClass="form-control">
+						</xp:inputText>
+					</xp:div>
+					<xp:div styleClass="pull-left">
+						<xp:button value="Cancel" id="button2" styleClass="btn btn-lg btn-default"
+							disableTheme="true">
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action>
+									<xp:openPage name="/my.xsp"></xp:openPage>
+								</xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
+					</xp:div>
+					<xc:ccSave></xc:ccSave>
+				</xp:panel>
+				<xc:ccNotLoggedIn></xc:ccNotLoggedIn>
+			</xp:div>
+
 		</xp:this.facets>
 	</xc:ccLayoutBootstrap>
 </xp:view>
