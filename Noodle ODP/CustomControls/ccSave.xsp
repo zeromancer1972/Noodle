@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core">
 	<xp:div styleClass="pull-right">
-		<xp:button value="Save" id="button1" styleClass="btn btn-lg btn-success"
+		<xp:button id="button1" styleClass="btn btn-lg btn-success"
 			disableTheme="true">
+			<span class="glyphicon glyphicon-ok"></span>&#160;Save
+			
 		<xp:eventHandler event="onclick" submit="true" refreshMode="complete">
 			<xp:this.action>
-				<xp:saveDocument var="document1"></xp:saveDocument>
+				<xp:actionGroup>
+					<xp:saveDocument var="document1"></xp:saveDocument>
+					<xp:openPage name="/my.xsp"></xp:openPage>
+				</xp:actionGroup>
 			</xp:this.action></xp:eventHandler></xp:button>
 	</xp:div>
 </xp:view>

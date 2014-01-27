@@ -19,7 +19,7 @@
 
 	<resource>
 		<content-type>application/x-javascript</content-type>
-		<href>core.js</href>
+		<href>noodle.js</href>
 	</resource>
 	<resource>
 		<content-type>text/css</content-type>

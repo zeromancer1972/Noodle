@@ -2,6 +2,7 @@
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
 
 
+	<xp:this.beforePageLoad><![CDATA[#{javascript:sessionScope.put("options", null)}]]></xp:this.beforePageLoad>
 	<xc:ccLayoutBootstrap colorclass="green">
 		<xp:this.facets>
 			<xp:div xp:key="facetLeft">
@@ -12,8 +13,10 @@
 				</xp:div>
 				<xp:div>
 					A survey should contains 2 or more options to ask
-					your invitees. Consider to give enough information
-					for your survey for your users to understand the
+					your invitees.
+					Consider to give enough information
+					for your survey for your users
+					to understand the
 					question.
 					<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
 				</xp:div>
@@ -21,61 +24,164 @@
 			<xp:div xp:key="facetMiddle">
 				<xp:panel>
 					<xp:this.data>
-						<xp:dominoDocument var="document1"
-							formName="survey">
-						<xp:this.postNewDocument><![CDATA[#{javascript:currentDocument.setValue("surveyUser", @UserName());
-currentDocument.setValue("surveyId", @Unique());}]]></xp:this.postNewDocument></xp:dominoDocument>
+						<xp:dominoDocument var="document1" formName="survey">
+							<xp:this.postNewDocument><![CDATA[#{javascript:currentDocument.setValue("surveyUser", @UserName());
+currentDocument.setValue("surveyId", @Unique());
+currentDocument.setValue("surveyMulti", "1");
+var survey = new org.openntf.noodle.Survey(currentDocument.getDocument());
+survey.getOptions();}]]></xp:this.postNewDocument>
+
+							<xp:this.postOpenDocument><![CDATA[#{javascript:var survey = new org.openntf.noodle.Survey(currentDocument.getDocument());
+survey.getOptions();}]]></xp:this.postOpenDocument>
+						</xp:dominoDocument>
 					</xp:this.data>
 					<xp:this.rendered><![CDATA[#{javascript:!@UserName().equals("Anonymous")}]]></xp:this.rendered>
 					<h1>Welcome to your new survey!</h1>
 					<xp:div styleClass="form-group">
-						<xp:label value="Give your survey a title"
-							id="surveyTitle_Label1" for="surveyTitle1" disableTheme="true">
+						<xp:label value="Give your survey a title" id="surveyTitle_Label1"
+							for="surveyTitle1" disableTheme="true">
 						</xp:label>
-						<xp:inputText value="#{document1.surveyTitle}"
-							id="surveyTitle1" styleClass="form-control">
+						<xp:inputText value="#{document1.surveyTitle}" id="surveyTitle1"
+							styleClass="form-control">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Survey for new product">
+								</xp:attr>
+							</xp:this.attrs>
 						</xp:inputText>
 					</xp:div>
 					<xp:div styleClass="form-group">
-						<xp:label value="Give a brief description"
-							id="surveyDesc_Label1" for="surveyDesc1" disableTheme="true">
+						<xp:label value="Give a brief description" id="surveyDesc_Label1"
+							for="surveyDesc1" disableTheme="true">
 						</xp:label>
-						<xp:inputText value="#{document1.surveyDesc}"
-							id="surveyDesc1" styleClass="form-control">
+						<xp:inputText value="#{document1.surveyDesc}" id="surveyDesc1"
+							styleClass="form-control">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="This is a brief description">
+								</xp:attr>
+							</xp:this.attrs>
 						</xp:inputText>
 					</xp:div>
 					<xp:div styleClass="form-group">
-						<xp:label
-							value="What is the question you want to ask?" id="label1"
-							for="surveyQuestion1" disableTheme="true">
+						<xp:label value="What is the question you want to ask?"
+							id="label1" for="surveyQuestion1" disableTheme="true">
 						</xp:label>
-						<xp:inputText value="#{document1.surveyQuestion}"
-							id="surveyQuestion1" styleClass="form-control">
+						<xp:inputText value="#{document1.surveyQuestion}" id="surveyQuestion1"
+							styleClass="form-control">
+							<xp:this.attrs>
+								<xp:attr name="placeholder"
+									value="What of the new product you like the most?">
+								</xp:attr>
+							</xp:this.attrs>
 						</xp:inputText>
 					</xp:div>
 					<xp:div styleClass="form-group">
-						<xp:label
-							value="Define options the users can choose"
-							id="surveyOptions_Label1" for="surveyOptions1"
-							disableTheme="true">
+						<xp:label id="label2" for="radioGroup1"
+							value="Is this a multiple choice survey?">
 						</xp:label>
-						<xp:inputText value="#{document1.surveyOptions}"
-							id="surveyOptions1" styleClass="form-control">
-						</xp:inputText>
+						<xp:radioGroup id="radioGroup1" value="#{document1.surveyMulti}"
+							layout="pageDirection">
+							<xp:selectItem itemLabel="yes" itemValue="1">
+							</xp:selectItem>
+							<xp:selectItem itemLabel="no" itemValue="0">
+							</xp:selectItem>
+						</xp:radioGroup>
+					</xp:div>
+					<xp:div styleClass="form-group">
+						<xp:label value="Define options the users can choose" id="surveyOptions_Label1"
+							for="surveyOptions1" disableTheme="true">
+						</xp:label>
+						<!-- JS options -->
+						<xp:panel id="options">
+						<xp:label id="label3">
+							<xp:this.value><![CDATA[#{javascript:sessionScope.get("options")}]]></xp:this.value>
+						</xp:label>
+						<xp:repeat var="option" indexVar="index">
+							<xp:this.value><![CDATA[#{javascript:sessionScope.get("options").entrySet();}]]></xp:this.value>
+							<div class="option input-group">
+								<span class="input-group-addon">
+									<xp:text
+										value="#{javascript:index+1}">
+										<xp:this.converter>
+											<xp:convertNumber
+												type="number">
+											</xp:convertNumber>
+										</xp:this.converter>
+									</xp:text>
+								</span>
+								<xp:inputText id="optioninput"
+									styleClass="form-control" type="text" loaded="true">
+									<xp:this.attrs>
+										<xp:attr name="value"
+											value="#{javascript:option.getValue()}">
+										</xp:attr>
+									</xp:this.attrs>
+									<xp:eventHandler event="onchange"
+										submit="true" refreshMode="norefresh">
+										<xp:this.action><![CDATA[#{javascript:sessionScope.put("option"+index, getComponent("optioninput").getValue())}]]></xp:this.action>
+									</xp:eventHandler>
+								</xp:inputText>
+								<xp:span styleClass="input-group-btn">
+									<xp:this.rendered><![CDATA[#{javascript:index>0}]]></xp:this.rendered>
+									<xp:button
+										styleClass="btn btn-danger" id="button3">
+										<xp:this.value><![CDATA[#{javascript:"remove "+option.getKey()}]]></xp:this.value>
+										<xp:eventHandler event="onclick"
+											submit="true" refreshMode="partial" refreshId="options">
+											<xp:this.action><![CDATA[#{javascript:var survey = new org.openntf.noodle.Survey(currentDocument.getDocument());
+survey.removeOption(option.getKey());}]]></xp:this.action>
+										</xp:eventHandler>
+									</xp:button>
+								</xp:span>
+							</div>
+						</xp:repeat>
+						</xp:panel>
+						<br />
+						<div id="add">
+							<xp:button styleClass="btn btn-success" id="button1">
+								<span class="glyphicon glyphicon-plus"></span>
+								&#160;
+								Add option
+								<xp:eventHandler event="onclick"
+									submit="true" refreshMode="partial" refreshId="options">
+									<xp:this.action><![CDATA[#{javascript:var survey = new org.openntf.noodle.Survey(currentDocument.getDocument());
+survey.addOption();}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:button>
+						</div>
 					</xp:div>
 					<xp:div styleClass="pull-left">
-						<xp:button value="Cancel" id="button2"
-							styleClass="btn btn-lg btn-default" disableTheme="true">
-							<xp:eventHandler event="onclick"
-								submit="true" refreshMode="complete">
+						<xp:button value="Cancel" id="button2" styleClass="btn btn-lg btn-default"
+							disableTheme="true">
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
 								<xp:this.action>
 									<xp:openPage name="/my.xsp"></xp:openPage>
 								</xp:this.action>
 							</xp:eventHandler>
 						</xp:button>
 					</xp:div>
-					<xc:ccSave></xc:ccSave>
+					<xp:div styleClass="pull-right">
+						<xp:button id="button4" styleClass="btn btn-lg btn-success"
+							disableTheme="true">
+							<span class="glyphicon glyphicon-ok"></span>
+							&#160;Save
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action>
+									<xp:actionGroup>
+										<xp:executeScript>
+											<xp:this.script><![CDATA[#{javascript:var survey = new org.openntf.noodle.Survey(currentDocument.getDocument());
+survey.setOptions();}]]></xp:this.script>
+										</xp:executeScript>
+										<xp:saveDocument var="document1">
+										</xp:saveDocument>
+										<xp:openPage name="/my.xsp"></xp:openPage>
 
+									</xp:actionGroup>
+								</xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
+					</xp:div>
 				</xp:panel>
 				<xc:ccNotLoggedIn></xc:ccNotLoggedIn>
 			</xp:div>

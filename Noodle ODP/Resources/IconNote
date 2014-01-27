@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <note default='true' class='icon' xmlns='http://www.lotus.com/dxl' version='9.0'
  maintenanceversion='1.0' replicaid='C1257C68006F8B3D'>
-<noteinfo noteid='11a' unid='4D2672D02500D38CC1257C68006F8B3F' sequence='5'>
+<noteinfo noteid='11a' unid='4D2672D02500D38CC1257C68006F8B3F' sequence='0'>
 <created><datetime>20140122T211821,43+01</datetime></created>
-<modified><datetime>20140122T212253,76+01</datetime></modified>
-<revised><datetime>20140122T212253,75+01</datetime></revised>
-<lastaccessed><datetime>20140122T212253,76+01</datetime></lastaccessed>
+<modified><datetime>20140126T173127,99+01</datetime></modified>
+<revised><datetime>20140125T022423,14+01</datetime></revised>
+<lastaccessed><datetime>20140126T173127,99+01</datetime></lastaccessed>
 <addedtofile><datetime>20140122T211821,46+01</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Oliver Busse/O=ulcbs</name></updatedby>
 <item name='IconBitmap' summary='true'>
@@ -23,10 +23,11 @@ d30fAAAAAPHXd33Xd3d913d9HwAAAADx13d913d3fdd3fR8AAAAA8R3d0dd3d30d3dEfAAAAAA8R
 EREdd3fRERER8AAAAAAA////Ed3dEf///wAAAAAAAAAAAPERER8AAAAAAAAAAAAAAAAP///wAAAA
 AAAAUEECICABAAD/////+A4DgA==
 </rawitemdata></item>
-<item name='$Daos'><text>0</text></item>
 <item name='$TITLE'><text>Noodle</text></item>
+<item name='$DefaultXPage'><text>index.xsp</text></item>
+<item name='$DefaultClientXPage'><text>index.xsp</text></item>
 <item name='$Flags'><text>J!</text></item>
 <item name='$LaunchXPageRunOnServer'><text>0</text></item>
 <item name='$FlagsNoRefresh'><text/></item>
-<item name='$DefaultXPage'><text>index.xsp</text></item></note>
+<item name='$Daos'><text>0</text></item></note>
 

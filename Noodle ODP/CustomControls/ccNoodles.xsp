@@ -12,9 +12,11 @@
 		My surveys&#160;
 		<span class="glyphicon glyphicon-thumbs-up"></span>
 	</h3>
-	<xp:pager layout="Previous Group Next" partialRefresh="true"
-		id="pager1" for="repeat1" disableTheme="true">
-	</xp:pager>
+	<xp:div styleClass="pull-right">
+		<xp:pager layout="Previous Group Next" partialRefresh="true"
+			id="pager1" for="repeat1" disableTheme="true">
+		</xp:pager>
+	</xp:div>
 	<table class="table table-striped">
 		<colgroup>
 			<col style="width: 300px;" />
@@ -38,10 +40,21 @@
 							formName="survey">
 						</xp:dominoDocument>
 					</xp:this.data>
+
 					<tr>
 						<td>
-							<xp:inputText id="inputText1" value="#{document1.surveyTitle}">
-							</xp:inputText>
+							<xp:link id="link1">
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="complete">
+									<xp:this.action>
+										<xp:openPage name="/survey.xsp" target="editDocument"
+											documentId="#{javascript:survey.getDocument().getUniversalID()}">
+										</xp:openPage>
+									</xp:this.action>
+								</xp:eventHandler>
+								<xp:inputText id="inputText1" value="#{document1.surveyTitle}">
+								</xp:inputText>
+							</xp:link>
 						</td>
 						<td>
 							<xp:inputText id="inputText2" value="#{document1.surveyQuestion}">
@@ -54,6 +67,7 @@ doc.getCreated()}]]></xp:this.value>
 							</xp:label>
 						</td>
 					</tr>
+
 				</xp:panel>
 			</xp:repeat>
 		</tbody>
@@ -62,9 +76,11 @@ doc.getCreated()}]]></xp:this.value>
 		My dates&#160;
 		<span class="glyphicon glyphicon-calendar"></span>
 	</h3>
-	<xp:pager layout="Previous Group Next" partialRefresh="true"
-		id="pager2" for="repeat2" disableTheme="true">
-	</xp:pager>
+	<xp:div styleClass="pull-right">
+		<xp:pager layout="Previous Group Next" partialRefresh="true"
+			id="pager2" for="repeat2" disableTheme="true">
+		</xp:pager>
+	</xp:div>
 	<table class="table table-striped">
 		<colgroup>
 			<col style="width: 300px;" />
